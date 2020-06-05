@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/acordeon01.ogg-9a9c6a2587a4914bbcf5024855d1f8ab.oggstr"
+
+[deps]
+
+source_file="res://data/instruments/acordeon/sounds/acordeon01.ogg"
+dest_files=[ "res://.import/acordeon01.ogg-9a9c6a2587a4914bbcf5024855d1f8ab.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

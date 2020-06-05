@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/triangulo01.ogg-a5fa6a7807f5af5d19acbc5076602812.oggstr"
+
+[deps]
+
+source_file="res://data/instruments/triangulo/sounds/triangulo01.ogg"
+dest_files=[ "res://.import/triangulo01.ogg-a5fa6a7807f5af5d19acbc5076602812.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
