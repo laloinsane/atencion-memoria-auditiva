@@ -7,6 +7,8 @@ var information_redirect = "TitleScreen"
 # Nivels
 var nivels_level = 1
 var nivels_score = 0
+# Categories
+var categorie
 
 # Information
 func update_title(title):
@@ -24,3 +26,7 @@ func update_level(level):
 
 func update_score(score):
 	self.nivels_score = score
+
+# Categories
+func update_categorie(categorie):
+	self.categorie = str(categorie)

@@ -1,7 +1,7 @@
 extends Node2D
 
 export(PackedScene) var Objeto
-const objects_file = "res://data/animals.json"
+var objects_file
 var json
 var audio = AudioStreamPlayer.new()
 var ogg = AudioStreamOGGVorbis.new()
@@ -12,19 +12,28 @@ var score_level = 0
 var score_total = 0
 var time_left = 2
 var eleccion_correcta = false
+var singular
+var plural
 
 func _ready():
+	objects_file = "res://data/"+Global.categorie+".json"
+	if Global.categorie == "animals":
+		singular = "ANIMAL"
+		plural = "ANIMALES"
+	else:
+		singular = "INSTRUMENTO"
+		plural = "INSTRUMENTOS"
 	# HUD
 	$HUD.update_level(Global.nivels_level)
 	$HUD.update_score(Global.nivels_score)
 	score_total = Global.nivels_score
 	# Display
 	if Global.nivels_level == 1:
-		update_indicaciones("[center]¡ESCUCHA CON ATENCION! [img=40x40]res://assets/emojis/emoji_u1f449_1f3fb.png[/img] [img=40x40]res://assets/emojis/emoji_u1f442_1f3fb.png[/img]\n\"PRESIONA [color=#FFD948]EL[/color] ANIMAL ESCUCHADO\"[/center]")
+		update_indicaciones("[center]¡ESCUCHA CON ATENCION! [img=40x40]res://assets/emojis/emoji_u1f449_1f3fb.png[/img] [img=40x40]res://assets/emojis/emoji_u1f442_1f3fb.png[/img]\n\"PRESIONA [color=#FFD948]EL[/color] "+singular+" ESCUCHADO\"[/center]")
 	if Global.nivels_level == 2:
-		update_indicaciones("[center][img=40x40]res://assets/emojis/emoji_u1f449_1f3fb.png[/img] [img=40x40]res://assets/emojis/emoji_u1f442_1f3fb.png[/img]\n\n\"PRESIONA [color=#FFD948]LOS[/color] ANIMALES QUE ESCUCHES\"[/center]")
+		update_indicaciones("[center][img=40x40]res://assets/emojis/emoji_u1f449_1f3fb.png[/img] [img=40x40]res://assets/emojis/emoji_u1f442_1f3fb.png[/img]\n\n\"PRESIONA [color=#FFD948]LOS[/color] "+plural+" QUE ESCUCHES\"[/center]")
 	if Global.nivels_level == 3:
-		update_indicaciones("[center][img=40x40]res://assets/emojis/emoji_u1f449_1f3fb.png[/img] [img=40x40]res://assets/emojis/emoji_u1f442_1f3fb.png[/img]\n\n\"PRESIONA [color=#FFD948]EL[/color] ANIMAL [color=#FFD948]NO[/color] ESCUCHADO\"[/center]")
+		update_indicaciones("[center][img=40x40]res://assets/emojis/emoji_u1f449_1f3fb.png[/img] [img=40x40]res://assets/emojis/emoji_u1f442_1f3fb.png[/img]\n\n\"PRESIONA [color=#FFD948]EL[/color] "+singular+" [color=#FFD948]NO[/color] ESCUCHADO\"[/center]")
 	# Transition
 	$Transition.fadeOut()
 	yield($Transition/AnimationPlayer, "animation_finished")
@@ -344,9 +353,9 @@ func next():
 
 func next_level(s,t,l):
 	if l == 2:
-		update_indicaciones("[center][img=40x40]res://assets/emojis/emoji_u1f449_1f3fb.png[/img] [img=40x40]res://assets/emojis/emoji_u1f442_1f3fb.png[/img]\n\n\"PRESIONA [color=#FFD948]LOS[/color] ANIMALES QUE ESCUCHES\"[/center]")
+		update_indicaciones("[center][img=40x40]res://assets/emojis/emoji_u1f449_1f3fb.png[/img] [img=40x40]res://assets/emojis/emoji_u1f442_1f3fb.png[/img]\n\n\"PRESIONA [color=#FFD948]LOS[/color] "+plural+" QUE ESCUCHES\"[/center]")
 	if l == 3:
-		update_indicaciones("[center][img=40x40]res://assets/emojis/emoji_u1f449_1f3fb.png[/img] [img=40x40]res://assets/emojis/emoji_u1f442_1f3fb.png[/img]\n\n\"PRESIONA [color=#FFD948]EL[/color] ANIMAL [color=#FFD948]NO[/color] ESCUCHADO\"[/center]")
+		update_indicaciones("[center][img=40x40]res://assets/emojis/emoji_u1f449_1f3fb.png[/img] [img=40x40]res://assets/emojis/emoji_u1f442_1f3fb.png[/img]\n\n\"PRESIONA [color=#FFD948]EL[/color] "+singular+" [color=#FFD948]NO[/color] ESCUCHADO\"[/center]")
 	$Display/Margin2/Escuchar.visible = true
 	# Timer
 	$Timer.stop()
