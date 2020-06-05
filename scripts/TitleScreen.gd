@@ -34,13 +34,6 @@ func _on_Nivel2_pressed():
 	Global.update_redirect("Nivel2")
 	$Transition.fadeIn("Information")
 
-func _on_Nivel3_pressed():
-	audiobtn.play()
-	Global.update_title("DISCRIMIMACION AUDITIVA")
-	Global.update_description("[fill]EL JUEGO CONSTA DE UNA ETAPA. EN LA CUAL ESCUCHARAS DOS PALABRAS, DEBES COLOCAR MUCHA ATENCION E IDENTIFICAR SI LAS PALABRAS SUENAN [color=#ffd948]IGUAL[/color] ([img=25x25]res://assets/icons/igual.png[/img]) O [color=#ffd948]DIFERENTE[/color] ([img=25x25]res://assets/icons/diffss.png[/img]). SI OBTIENES UN PUNTAJE [rainbow freq=0.1 sat=0.5 val=1]IGUAL O SUPERIOR[/rainbow] A [color=#ffd948]SIETE[/color] GANAS.[/fill]")
-	Global.update_redirect("Nivel3")
-	$Transition.fadeIn("Information")
-
 func _on_Credits_pressed():
 	audiobtn.play()
 	$Transition.fadeIn("Credits")
