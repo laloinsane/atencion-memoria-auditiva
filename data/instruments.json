@@ -1,0 +1,74 @@
+{
+  "01": {
+    "name": "Acordeon",
+    "code": "01-Acordeon",
+    "sound": "res://data/instruments/acordeon/sounds/acordeon01.ogg",
+    "image": "res://data/instruments/acordeon/images/acordeon01.png"
+  },
+  "02": {
+    "name": "Armonica",
+    "code": "02-Armonica",
+    "sound": "res://data/instruments/armonica/sounds/armonica01.ogg",
+    "image": "res://data/instruments/armonica/images/armonica01.png"
+  },
+  "03": {
+    "name": "Bateria",
+    "code": "03-Bateria",
+    "sound": "res://data/instruments/bateria/sounds/bateria01.ogg",
+    "image": "res://data/instruments/bateria/images/bateria01.png"
+  },
+  "04": {
+    "name": "Bombo",
+    "code": "04-Bombo",
+    "sound": "res://data/instruments/bombo/sounds/bombo01.ogg",
+    "image": "res://data/instruments/bombo/images/bombo01.png"
+  },
+  "05": {
+    "name": "Charango",
+    "code": "05-Charango",
+    "sound": "res://data/instruments/charango/sounds/charango01.ogg",
+    "image": "res://data/instruments/charango/images/charango01.png"
+  },
+  "06": {
+    "name": "Flauta",
+    "code": "06-Flauta",
+    "sound": "res://data/instruments/flauta/sounds/flauta01.ogg",
+    "image": "res://data/instruments/flauta/images/flauta01.png"
+  },
+  "07": {
+    "name": "Guitarra",
+    "code": "07-Guitarra",
+    "sound": "res://data/instruments/guitarra/sounds/guitarra01.ogg",
+    "image": "res://data/instruments/guitarra/images/guitarra01.png"
+  },
+  "08": {
+    "name": "Piano",
+    "code": "08-Piano",
+    "sound": "res://data/instruments/piano/sounds/piano01.ogg",
+    "image": "res://data/instruments/piano/images/piano01.png"
+  },
+  "09": {
+    "name": "Saxofon",
+    "code": "09-Saxofon",
+    "sound": "res://data/instruments/saxofon/sounds/saxofon01.ogg",
+    "image": "res://data/instruments/saxofon/images/saxofon01.png"
+  },
+  "10": {
+    "name": "Triangulo",
+    "code": "10-Triangulo",
+    "sound": "res://data/instruments/triangulo/sounds/triangulo01.ogg",
+    "image": "res://data/instruments/triangulo/images/triangulo01.png"
+  },
+  "11": {
+    "name": "Violin",
+    "code": "11-Violin",
+    "sound": "res://data/instruments/violin/sounds/violin01.ogg",
+    "image": "res://data/instruments/violin/images/violin01.png"
+  },
+  "12": {
+    "name": "Zampoña",
+    "code": "12-Zampoña",
+    "sound": "res://data/instruments/zampona/sounds/zampona01.ogg",
+    "image": "res://data/instruments/zampona/images/zampona01.png"
+  }
+}

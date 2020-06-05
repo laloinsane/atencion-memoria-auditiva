@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/saxofon01.ogg-9857ded1ea0c253774b1ea0e8760d4d8.oggstr"
+
+[deps]
+
+source_file="res://data/instruments/saxofon/sounds/saxofon01.ogg"
+dest_files=[ "res://.import/saxofon01.ogg-9857ded1ea0c253774b1ea0e8760d4d8.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

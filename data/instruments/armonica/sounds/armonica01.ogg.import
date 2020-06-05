@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/armonica01.ogg-124653d738b813a53e00acd21fd54469.oggstr"
+
+[deps]
+
+source_file="res://data/instruments/armonica/sounds/armonica01.ogg"
+dest_files=[ "res://.import/armonica01.ogg-124653d738b813a53e00acd21fd54469.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
