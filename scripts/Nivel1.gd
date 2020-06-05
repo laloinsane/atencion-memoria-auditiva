@@ -34,6 +34,8 @@ func _ready():
 		update_indicaciones("[center][img=40x40]res://assets/emojis/emoji_u1f449_1f3fb.png[/img] [img=40x40]res://assets/emojis/emoji_u1f442_1f3fb.png[/img]\n\n\"PRESIONA [color=#FFD948]LOS[/color] "+plural+" QUE ESCUCHES\"[/center]")
 	if Global.nivels_level == 3:
 		update_indicaciones("[center][img=40x40]res://assets/emojis/emoji_u1f449_1f3fb.png[/img] [img=40x40]res://assets/emojis/emoji_u1f442_1f3fb.png[/img]\n\n\"PRESIONA [color=#FFD948]EL[/color] "+singular+" [color=#FFD948]NO[/color] ESCUCHADO\"[/center]")
+	if Global.nivels_level == 4:
+		update_indicaciones("[center][img=40x40]res://assets/emojis/emoji_u1f449_1f3fb.png[/img] [img=40x40]res://assets/emojis/emoji_u1f442_1f3fb.png[/img]\n\n\"PRESIONA [color=#FFD948]EL[/color] "+singular+" [color=#FFD948]NO[/color] ESCUCHADO\"[/center]")
 	# Transition
 	$Transition.fadeOut()
 	yield($Transition/AnimationPlayer, "animation_finished")
@@ -52,6 +54,10 @@ func _ready():
 		set_options(json, 1)
 	if Global.nivels_level == 3:
 		set_sounds(2)
+		_on_Escuchar_pressed()
+		set_options(json, 1)
+	if Global.nivels_level == 4:
+		set_sounds(3)
 		_on_Escuchar_pressed()
 		set_options(json, 1)
 
@@ -196,7 +202,21 @@ func _on_Escuchar_pressed():
 		$Display/Margin2/Escuchar.disabled = false
 		$Options.visible = true
 		$Display/Margin2/Escuchar.texture_normal = load("res://assets/buttons/nivels/audiobasic.png")
-
+	if Global.nivels_level == 4 and seleccionados != 1:
+		$Display/Margin2/Escuchar.texture_normal = load("res://assets/buttons/nivels/audiopress.png")
+		$Display/Margin2/Escuchar.disabled = true
+		for i in $Sounds.get_children():
+			if seleccionados != 1:
+				ogg = load(i.get_sound())
+				ogg.loop = false
+				audio.stream = ogg
+				audio.play()
+				yield(audio, "finished")
+			else:
+				break
+		$Display/Margin2/Escuchar.disabled = false
+		$Options.visible = true
+		$Display/Margin2/Escuchar.texture_normal = load("res://assets/buttons/nivels/audiobasic.png")
 
 # Funcion que se ejecuta al clickear en un objeto
 func _is_code(x):
@@ -249,6 +269,18 @@ func _is_code(x):
 			incorrect(x)
 		else:
 			correct(x)
+	if Global.nivels_level == 4 and seleccionados == 0:
+		seleccionados += 1
+		intentos_level += 1
+		audio.stop()
+		var existe = false
+		for i in $Sounds.get_children():
+			if i.code == x.code:
+				existe = true
+		if existe == true:
+			incorrect(x)
+		else:
+			correct(x)
 
 func correct(x):
 	if Global.nivels_level == 1:
@@ -277,7 +309,14 @@ func correct(x):
 		x.set_status("res://assets/icons/correct.png")
 		x.set_sound_victory()
 		$Timer.start()
-	
+	if Global.nivels_level == 4:
+		score_level += 1
+		score_total += 1
+		$HUD.update_score(score_total)
+		x.set_status("res://assets/icons/correct.png")
+		x.set_sound_victory()
+		$Timer.start()
+
 func incorrect(x):
 	if Global.nivels_level == 1:
 		x.set_status("res://assets/icons/incorrect.png")
@@ -295,12 +334,18 @@ func incorrect(x):
 		x.set_status("res://assets/icons/incorrect.png")
 		x.set_sound_lose()
 		$Timer.start()
+	if Global.nivels_level == 4:
+		x.set_status("res://assets/icons/incorrect.png")
+		x.set_sound_lose()
+		$Timer.start()
 
 # Timer
 func _on_Timer_timeout():
 	time_left -=1
 	if time_left <= 0:
-		if intentos_level <= 5:
+		if Global.nivels_level <= 2 and intentos_level <= 2:
+			next()
+		elif Global.nivels_level > 2 and intentos_level <= 4:
 			next()
 		else:
 			$HUD.reset_popup_info()
@@ -324,37 +369,55 @@ func next():
 	reset_containers()
 	eleccion_correcta = false
 	
-	if intentos_level < 5:
-		if Global.nivels_level == 1:
-			set_sounds(1)
-			_on_Escuchar_pressed()
-			set_options(json, 1)
-		if Global.nivels_level == 2:
-			set_sounds(2)
-			_on_Escuchar_pressed()
-			set_options(json, 1)
-		if Global.nivels_level == 3:
-			set_sounds(2)
-			_on_Escuchar_pressed()
-			set_options(json, 1)
-	else:
-		if score_level >= 4:
-			if Global.nivels_level == 3:
-				$Display/Margin2/Escuchar.visible = false
-				$HUD.show_popup_finalizar("[center]¡FELICITACIONES!\nPUNTAJE FINAL : "+str(score_total)+" DE 15 PUNTOS\n\n[img=50x50]res://assets/emojis/win1.png[/img][img=50x50]res://assets/emojis/win2.png[/img][img=50x50]res://assets/emojis/win3.png[/img][/center]")
-			else:
+	if Global.nivels_level <= 2:
+		if intentos_level < 2:
+			if Global.nivels_level == 1:
+				set_sounds(1)
+				_on_Escuchar_pressed()
+				set_options(json, 1)
+			if Global.nivels_level == 2:
+				set_sounds(2)
+				_on_Escuchar_pressed()
+				set_options(json, 1)
+		else:
+			if score_level >= 2:
 				intentos_level += 1
 				$Timer.start()
 				$Display/Margin2/Escuchar.visible = false
 				$HUD.show_popup_info()
+			else:
+				$Display/Margin2/Escuchar.visible = false
+				$HUD.show_popup_reintentar("[center]HAS OBTENIDO : "+str(score_total)+" DE 12 PUNTOS\nSIGUELO INTENTANDO\n\n[img=50x50]res://assets/emojis/loser1.png[/img][img=50x50]res://assets/emojis/loser2.png[/img][/center]")
+	elif Global.nivels_level > 2:
+		if intentos_level < 4:
+			if Global.nivels_level == 3:
+				set_sounds(2)
+				_on_Escuchar_pressed()
+				set_options(json, 1)
+			if Global.nivels_level == 4:
+				set_sounds(3)
+				_on_Escuchar_pressed()
+				set_options(json, 1)
 		else:
-			$Display/Margin2/Escuchar.visible = false
-			$HUD.show_popup_reintentar("[center]HAS OBTENIDO : "+str(score_total)+" DE 15 PUNTOS\nSIGUELO INTENTANDO\n\n[img=50x50]res://assets/emojis/loser1.png[/img][img=50x50]res://assets/emojis/loser2.png[/img][/center]")
+			if score_level >= 4:
+				if Global.nivels_level == 4:
+					$Display/Margin2/Escuchar.visible = false
+					$HUD.show_popup_finalizar("[center]¡FELICITACIONES!\nPUNTAJE FINAL : "+str(score_total)+" DE 12 PUNTOS\n\n[img=50x50]res://assets/emojis/win1.png[/img][img=50x50]res://assets/emojis/win2.png[/img][img=50x50]res://assets/emojis/win3.png[/img][/center]")
+				else:
+					intentos_level += 1
+					$Timer.start()
+					$Display/Margin2/Escuchar.visible = false
+					$HUD.show_popup_info()
+			else:
+				$Display/Margin2/Escuchar.visible = false
+				$HUD.show_popup_reintentar("[center]HAS OBTENIDO : "+str(score_total)+" DE 12 PUNTOS\nSIGUELO INTENTANDO\n\n[img=50x50]res://assets/emojis/loser1.png[/img][img=50x50]res://assets/emojis/loser2.png[/img][/center]")
 
 func next_level(s,t,l):
 	if l == 2:
 		update_indicaciones("[center][img=40x40]res://assets/emojis/emoji_u1f449_1f3fb.png[/img] [img=40x40]res://assets/emojis/emoji_u1f442_1f3fb.png[/img]\n\n\"PRESIONA [color=#FFD948]LOS[/color] "+plural+" QUE ESCUCHES\"[/center]")
 	if l == 3:
+		update_indicaciones("[center][img=40x40]res://assets/emojis/emoji_u1f449_1f3fb.png[/img] [img=40x40]res://assets/emojis/emoji_u1f442_1f3fb.png[/img]\n\n\"PRESIONA [color=#FFD948]EL[/color] "+singular+" [color=#FFD948]NO[/color] ESCUCHADO\"[/center]")
+	if l == 4:
 		update_indicaciones("[center][img=40x40]res://assets/emojis/emoji_u1f449_1f3fb.png[/img] [img=40x40]res://assets/emojis/emoji_u1f442_1f3fb.png[/img]\n\n\"PRESIONA [color=#FFD948]EL[/color] "+singular+" [color=#FFD948]NO[/color] ESCUCHADO\"[/center]")
 	$Display/Margin2/Escuchar.visible = true
 	# Timer
@@ -381,5 +444,9 @@ func next_level(s,t,l):
 		set_options(json, 1)
 	if Global.nivels_level == 3:
 		set_sounds(2)
+		_on_Escuchar_pressed()
+		set_options(json, 1)
+	if Global.nivels_level == 4:
+		set_sounds(3)
 		_on_Escuchar_pressed()
 		set_options(json, 1)
