@@ -2,7 +2,7 @@ extends Node
 
 # Information
 var information_title = "ENTRENAMIENTO AUDITIVO"
-var information_description = "[center]EL JUEGO DE [wave][color=#ffd948]\"ENTRENAMIENTO AUDITIVO\"[/color][/wave] ESTIMULA ([rainbow freq=0.1 sat=0.5 val=1]LA ATENCION AUDITIVA[/rainbow] y [rainbow freq=0.1 sat=0.5 val=1]LA MEMORIA AUDITIVA[/rainbow]) CON EL FIN DE MEJORAR LA COMPRENCION DE LOS SONIDOS DEL LENGUAJE. TE INVITAMOS A PROBAR TU CAPACIDAD DE DISCRIMINAR, IDENTIFICAR E INTERPRETAR LOS MENSAJES SONOROS.[/center]\n\n\n[center][img=120x180]res://assets/logos/colegio.png[/img][/center]"
+var information_description = "[center]EL JUEGO DE [wave][color=#ffd948]\"ENTRENAMIENTO AUDITIVO\"[/color][/wave] ESTIMULA ([rainbow freq=0.1 sat=0.5 val=1]LA ATENCION AUDITIVA[/rainbow] y [rainbow freq=0.1 sat=0.5 val=1]LA MEMORIA AUDITIVA[/rainbow]) CON EL FIN DE MEJORAR LA COMPRENSION DE LOS SONIDOS DEL LENGUAJE. TE INVITAMOS A PROBAR TU CAPACIDAD DE DISCRIMINAR, IDENTIFICAR E INTERPRETAR LOS MENSAJES SONOROS.[/center]\n\n\n[center][img=120x180]res://assets/logos/colegio.png[/img][/center]"
 var information_redirect = "TitleScreen"
 # Nivels
 var nivels_level = 1
