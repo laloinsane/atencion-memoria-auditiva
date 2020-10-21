@@ -4,3 +4,4 @@ El juego de "Entrenamiento Auditivo" estimula (La Atención Auditiva y La Memori
 
 ![Godot Engine](https://img.shields.io/badge/Godot%20Engine-v3.2.1-blue)
 ![OpenGL ES](https://img.shields.io/badge/OpenGL%20ES-v3.0-blue)
+![API Level](https://img.shields.io/badge/API%20Level-28-blue)
